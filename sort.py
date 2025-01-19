@@ -41,7 +41,6 @@ class DfSort:
     def linear_regression(self, X, y):
         # Решение системы методом наименьших квадратов
         beta = np.linalg.lstsq(X, y, rcond=None)[0]
-        print(f'!!!!!{beta}')
         # Остатки
         residuals = y - X @ beta
         # Сумма квадратов остатков
