@@ -10,6 +10,7 @@ class Model:
         # Создание модели при инициализации
         if factors is None:
             factors = ['Factor1', 'Factor2', 'Factor3', 'Factor4']
+        self.factors = factors
         X = df[factors]
         y = df['Response']
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -104,3 +105,23 @@ class Model:
         print(f'Коэффициент эластичности: {values[0]}')
         print(f'Мера вариации результативного признака: {values[1]}')
         print(f'Показатель системного эфекта факторов: {values[2]}')
+
+    def log(self):
+        output = ''
+        output += f'Параметры итоговой модели\n'
+        output += f'Используемые факторы: {self.factors}\n'
+        final_equation = ''
+        i = 0
+        coeffs = self.get_coefficients()
+        for _ in self.factors:
+            final_equation += f'{coeffs[0][i]: .2f} * X' + str(i + 1) + ' + '
+            i += 1
+        final_equation += f'{coeffs[1]: .2f}'
+        output += f'Итоговое уравнение: {final_equation}'
+        stats = self.get_stats()
+        output += f'\n\nСредняя абсолютная ошибка: {stats[0]}\nСреднеквадратическая ошибка: {stats[1]}\nКоэффициент детерминации: {stats[2]}\n\n'
+        special_values = self.get_special_values()
+        output += f'Коэффициент эластичности: {special_values[0]}\nМера вариации результативного признака: {special_values[1]}\nПоказатель системного эфекта факторов: {special_values[2]}\n'
+        with open('final_model_description.txt', 'w') as log:
+            log.write(output)
+        log.close()

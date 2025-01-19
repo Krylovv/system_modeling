@@ -43,13 +43,16 @@ if __name__ == "__main__":
         model.print_stats()
     model.print_evaluation()
 
-    evaluation_coefficients = []
-    i = 0
-    for i in range(len(resulting_factors)):
-        i += 1
-        evaluation_coefficients.append(input(f'Введите фактор {i}: '))
-    print(model.get_prediction(evaluation_coefficients))
-    print('\n\n\n')
-    print(model.print_special_values())
+    a = input('Перейти к предсказанию на основе модели? Y/n ')
+    while a != 'n':
+        evaluation_coefficients = []
+        i = 0
+        for i in range(len(resulting_factors)):
+            i += 1
+            evaluation_coefficients.append(input(f'Введите фактор {i}: '))
+        print(model.get_prediction(evaluation_coefficients))
+        a = input('Повторить цикл предсказания? Y/n ')
+        print('\n\n')
 
-    # TODO выбор ввода из файла, вывод в файл
+    model.print_special_values()
+    model.log()
