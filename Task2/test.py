@@ -20,7 +20,7 @@ class Test:
         fig, ax = plt.subplots(figsize=(10, 6))
 
         n_bins = int(np.sqrt(len(self.data)))
-        ax.hist(self.data, bins=n_bins, density=True, label='Гистограмма', color='skyblue', edgecolor='black')
+        ax.hist(self.data, bins=n_bins, density=True, label='Гистограмма', color='skyblue')
 
         ax.set_xlabel('Значение')
         ax.set_ylabel('Плотность вероятности')

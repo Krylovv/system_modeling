@@ -8,7 +8,7 @@ def main():
     for i in range(10000):
         data.append(rng.temper())
     data = rng.normalize_values(data)
-    print('Тестирование алгоритма Вихрь Мерсена')
+    print('Тестирование алгоритма Вихрь Мерсенна')
     test_unit = Test(data)
     test_unit.kolmogorov_smirnov_test()
 
